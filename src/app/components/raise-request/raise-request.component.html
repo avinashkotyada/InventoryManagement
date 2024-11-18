@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Raise Request</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submitRaiseRequestForm()">
+
+    <ion-item>
+      <ion-label >User</ion-label>
+      <ion-select [(ngModel)]="selectedUser" name="user" placeholder="Select User" required>
+        <ion-select-option *ngFor="let user of usersData" [value]="user.id">{{ user.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Reason -->
+    <ion-item>
+      <ion-input label="Purpose" ></ion-input>
+    </ion-item>
+
+    <!-- Return Date (ion-datetime) -->
+    <ion-item>
+      <ion-label>Expected Return Date</ion-label>
+      <ion-datetime [(ngModel)]="returnDate" name="returnDate" display-format="MMM DD, YYYY" placeholder="Select Return Date" required></ion-datetime>
+    </ion-item>
+
+    <!-- Submit Button -->
+    <ion-button style="margin: 10px;" expand="full" type="submit" color="primary">Submit</ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Stock</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let item of stockData; let i = index" lines="none">
+      
+      <!-- Serial number chip with bold font -->
+      <ion-chip color="primary" style="font-size: 1.2rem; font-weight: bold;">
+        {{ i + 1 }}
+      </ion-chip>
+  
+      <!-- Card for each stock item -->
+      <ion-card 
+        style="width: 100%; margin: 10px 0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        
+        <!-- Card Header with serial number -->
+        <ion-card-header 
+          style="background-color: #f4f5f8; border-radius: 10px 10px 0 0; padding: 15px;">
+          <ion-card-title style="font-size: 1.4rem; font-weight: bold; color: #333;">{{ item.serialNo }}</ion-card-title>
+        </ion-card-header>
+  
+        <!-- Availability Status Section -->
+        <ion-card-content 
+          style="padding: 15px; font-size: 1.1rem; color: #333; font-weight: normal;">
+          <p style="font-weight: bold; color: #666;">Availability: <ion-chip>{{ item.availabilityStatus }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;">Condition: <ion-chip>{{ item.conditionStatus }}</ion-chip></p>
+        </ion-card-content>
+
+      </ion-card>
+      
+      <!-- Allocate Button -->
+      <ion-button 
+        slot="end" 
+        color="secondary" 
+        (click)="allocatedStock(item.id)" 
+        shape="round" 
+        fill="outline"
+        id="opn-modal"
+        style="margin-top: 10px;">
+        Allocate
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
