@@ -1,0 +1,10 @@
+{
+    "/**": {
+      "target": "https://e921-115-98-219-242.ngrok-free.app",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/": ""
+      }
+    }
+  }

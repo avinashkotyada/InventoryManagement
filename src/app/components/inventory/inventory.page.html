@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-grid size="4">
     <ion-item *ngFor="let item of inventoryData; let i = index" lines="none">
       <ion-chip color="primary" style="font-size: 1.2rem; font-weight: bold;">
         {{ i + 1 }}
@@ -26,5 +26,5 @@
           <ion-icon name="arrow-forward" slot="end"></ion-icon>
         </ion-button>
     </ion-item>
-  </ion-list>
+  </ion-grid>
 </ion-content>

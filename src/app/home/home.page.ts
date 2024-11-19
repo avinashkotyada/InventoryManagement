@@ -15,4 +15,9 @@ export class HomePage {
     this.router.navigateByUrl('/inventory')
   }
 
+  goToRequestAllocations() {
+    console.log('clickedAllocation')
+    this.router.navigateByUrl('/requests')
+  }
+
 }

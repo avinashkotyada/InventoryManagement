@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Allocation Requests</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let item of requestData; let i = index" lines="none">
+      
+      <!-- Serial number chip with bold font -->
+      <ion-chip color="primary" style="font-size: 1.2rem; font-weight: bold;">
+        {{ i + 1 }}
+      </ion-chip>
+  
+      <!-- Card for each stock item -->
+      <ion-card 
+        style="width: 100%; margin: 10px 0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        
+        <!-- Card Header with serial number -->
+        <ion-card-header 
+          style="background-color: #f4f5f8; border-radius: 10px 10px 0 0; padding: 15px;">
+          <ion-card-title style="font-size: 1.4rem; font-weight: bold; color: #333;">{{ item.equipmentId }}</ion-card-title>
+        </ion-card-header>
+  
+        <!-- Availability Status Section -->
+        <ion-card-content 
+          style="padding: 15px; font-size: 1.1rem; color: #333; font-weight: normal;">
+          <p style="font-weight: bold; color: #666;">Purpose: <ion-chip color="tertiary">{{ item.purpose }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;">Request Date: <ion-chip >{{ item.requestDate }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;" *ngIf="item.returnStatus === 'pending'">Expected Return Date: <ion-chip color="danger">{{ item.expectedReturnDate }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;" *ngIf="item.returnStatus === 'returned'">Returned Date: <ion-chip color="success">{{ item.expectedReturnDate }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;" *ngIf="item.returnStatus === 'returned'">Return Condition: <ion-chip color="primary">{{ item.returnCondition }}</ion-chip></p>
+          <p style="font-weight: bold; color: #666;">UserId: <ion-chip color="secondary">{{ item.userId }}</ion-chip></p>
+        </ion-card-content>
+
+      </ion-card>
+      
+      <!-- Allocate Button -->
+      <ion-button 
+        slot="end" 
+        color="secondary" 
+        shape="round" 
+        fill="outline"
+        id="opn-modal"
+        style="margin-top: 10px;" *ngIf="item.returnStatus === 'pending'">
+        Return
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

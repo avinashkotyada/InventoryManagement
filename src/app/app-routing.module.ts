@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'stock/:id',
     loadChildren: () => import('./components/stock/stock.module').then( m => m.StockPageModule)
   },
+  {
+    path: 'requests',
+    loadChildren: () => import('./components/allocations/allocations.module').then( m => m.AllocationsPageModule)
+  },
+  {
+    path: 'allocations',
+    loadChildren: () => import('./components/allocations/allocations.module').then( m => m.AllocationsPageModule)
+  }
 ];
 
 @NgModule({
