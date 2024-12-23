@@ -1,30 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Inventory</ion-title>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="toolbar-title">Sensor Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-grid size="4">
-    <ion-item *ngFor="let item of inventoryData; let i = index" lines="none">
-      <ion-chip color="primary" style="font-size: 1.2rem; font-weight: bold;">
-        {{ i + 1 }}
-      </ion-chip>
-  
-      <ion-card style="width: 100%; margin: 10px 0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <ion-card-header style="background-color: #f4f5f8; border-radius: 10px 10px 0 0; padding: 10px;">
-          <ion-card-title style="font-size: 1.25rem; font-weight: bold;">{{ item.name }}</ion-card-title>
-        </ion-card-header>
-  
-        <ion-card-content style="padding: 15px;">
-          <p>{{ item.description }}</p>
-        </ion-card-content>
-      </ion-card>
-      
-      <ion-button slot="end" color="secondary" (click)="goToStock(item.id)" shape="round" fill="outline">
-        Stock
-          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <div class="card-header-container">
+        <ion-searchbar
+          [(ngModel)]="searchTerm"
+          placeholder="Search by Sensor ID"
+          animated
+          (ionInput)="filterSensors()"
+        ></ion-searchbar>
+
+        <ion-button
+          fill="block"
+          size="default"
+          color="primary"
+        >Refresh
         </ion-button>
-    </ion-item>
-  </ion-grid>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="table-wrapper">
+        <ion-grid>
+          <ion-row class="table-header">
+            <ion-col>Sensor ID</ion-col>
+            <ion-col>Max Temp (°C)</ion-col>
+            <ion-col>Min Temp (°C)</ion-col>
+            <ion-col>Avg Temp (°C)</ion-col>
+            <ion-col>Max Hum (%)</ion-col>
+            <ion-col>Min Hum (%)</ion-col>
+            <ion-col>Avg Hum (%)</ion-col>
+          </ion-row>
+
+          <ion-row
+            class="table-row"
+            *ngFor="let sensor of filteredSensors"
+          >
+            <ion-col >{{ sensor.sensorId }}</ion-col>
+            <ion-col >{{ sensor.max_temperature }}</ion-col>
+            <ion-col >{{ sensor.min_temperature }}</ion-col>
+            <ion-col>{{ sensor.avg_temperature }}</ion-col>
+            <ion-col>{{ sensor.max_humidity }}</ion-col>
+            <ion-col>{{ sensor.min_humidity }}</ion-col>
+            <ion-col>{{ sensor.avg_humidity }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
